@@ -34,13 +34,17 @@ def shuffle():
     for h in nicknames:
         lst.append(h)
     for j in additional:
-        lst.append(additional)
+        lst.append(j)
     wordlist.extend(lst)
 
     if up == 'y':
-        lst_up = list(xi for xi in lst if not xi[0].isdigit())
-        for xo in lst_up:
-            lst.append(xo[0].upper() + xo[1:])
+        lst2 = []
+        for xo in lst:
+            lst2.append(xo.title())
+    else:
+        lst2 = []
+
+    lst.extend(lst2)
     lst1 = lst
     for w in lst:
         for y in lst1:
@@ -103,8 +107,9 @@ while True:
     print(" ")
     if choice == '1':
         shuffle()
-        wordlist.sort()
-        for x in wordlist:
+        wordlist1 = list(set(wordlist))
+        wordlist1.sort()
+        for x in wordlist1:
             print(x, end=' - ')
             f.write(x + "\n")
         f.close()
@@ -113,8 +118,9 @@ while True:
         break
     elif choice == '2':
         common_numbers()
-        wordlist.sort()
-        for x in wordlist:
+        wordlist1 = list(set(wordlist))
+        wordlist1.sort()
+        for x in wordlist1:
             print(x, end=' - ')
             write = f.write(x + "\n")
         f.close()
@@ -124,8 +130,9 @@ while True:
     elif choice == '3':
         shuffle()
         common_numbers()
-        wordlist.sort()
-        for x in wordlist:
+        wordlist1 = list(set(wordlist))
+        wordlist1.sort()
+        for x in wordlist1:
             print(x, end=' - ')
             f.write(x + "\n")
         f.close()
