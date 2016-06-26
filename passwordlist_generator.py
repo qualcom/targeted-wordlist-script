@@ -31,10 +31,10 @@ def shuffle():
         lst.append(first_name)
     if family_name != '':
         lst.append(family_name)
-    if not nicknames:
-        lst.extend(nicknames)
-    if not additional:
-        lst.extend(additional)
+    for h in nicknames:
+        lst.append(h)
+    for j in additional:
+        lst.append(additional)
     wordlist.extend(lst)
 
     if up == 'y':
@@ -78,8 +78,8 @@ def common_numbers():
         s1.append(u*2)
         su1.append(''.join(s))
 
-    other = ['123123', '12341234', '24682468', '1357913579']
-
+    other = ['123123', '12341234', '24682468', '1357913579', 'abc123', '123abc', 'abcd1234']
+    other1 = ['azerty', 'aqwzsx', 'fuckyou', 'azerty123', 'wxcvbn']
     num = list(filter(lambda z: 4 <= len(z), nu))
     suf = list(filter(lambda z: 8 <= len(z) <= 10, su))
     num.extend(list(filter(lambda z: 4 <= len(z), nu2)))
@@ -90,6 +90,7 @@ def common_numbers():
     total.extend(num)
     total.extend(suf)
     total.extend(list(h[::-1] for h in total))
+    total.extend(other1)
     wordlist.extend(total)
 
 while True:
