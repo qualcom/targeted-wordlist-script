@@ -46,12 +46,19 @@ def shuffle():
 
     lst.extend(lst2)
     lst1 = lst
+    lst3 = lst
     for w in lst:
         for y in lst1:
             a = w.lower()
             b = y.lower()
             if a != b:
                 wordlist.append(w+y)
+            for u in lst3:
+                a = w.lower()
+                b = y.lower()
+                c = u.lower()
+                if a != b and a != c and b != c:
+                    wordlist.append(w + y + u)
 
 
 def common_numbers():
