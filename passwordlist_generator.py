@@ -116,35 +116,44 @@ while True:
         shuffle()
         wordlist1 = list(set(wordlist))
         wordlist1.sort()
+        wordlist1.sort(key=len)
         for x in wordlist1:
             print(x, end=' - ')
             f.write(x + "\n")
         f.close()
         print("\n", " ")
-        print("!!! passwordlist created successfully ^_^")
+        print("!!! Success ^_^")
+        with open(filename, 'r') as f:
+            print("A password list of", len(f.read().split("\n")), "has been created")
         break
     elif choice == '2':
         common_numbers()
         wordlist1 = list(set(wordlist))
         wordlist1.sort()
+        wordlist1.sort(key=len)
         for x in wordlist1:
             print(x, end=' - ')
             write = f.write(x + "\n")
         f.close()
         print("\n", " ")
-        print("!!! passwordlist created successfully ^_^")
+        print("!!! Success ^_^")
+        with open(filename, 'r') as f:
+            print("A password list of", len(f.read().split("\n")), "has been created")
         break
     elif choice == '3':
         shuffle()
         common_numbers()
         wordlist1 = list(set(wordlist))
         wordlist1.sort()
+        wordlist1.sort(key=len)
         for x in wordlist1:
             print(x, end=' - ')
             f.write(x + "\n")
         f.close()
         print("\n", " ")
-        print("!!! passwordlist created successfully ^_^")
+        print("!!! Success ^_^")
+        with open(filename, 'r') as f:
+            print("A password list of", len(f.read().split("\n")), "has been created")
         break
     else:
         print('!!! please enter a valid answer ')
