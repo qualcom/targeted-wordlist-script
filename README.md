@@ -10,3 +10,5 @@ The script also provides common passwords based on numbers such as: 123456, 1234
       python3 passwordlist_generator.py
 
 -- python 3.5 --
+
+contact me: fb.com/violentpawn
