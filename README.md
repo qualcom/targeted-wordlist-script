@@ -1,9 +1,5 @@
-# passwordlist-generator
-Generate a personalized password-list using general knowledge about the target.
-
-Please note that this is my first python project.
-
-The script also provides common passwords based on numbers such as: 123456, 1234560, 123123, etc.
+# targeted wordlist script by qualcom
+Create a targeted wordlist using known info about the target.
 
 !!! to start script in deb linux, type in terminal:
 
