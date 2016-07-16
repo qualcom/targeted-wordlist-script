@@ -1,159 +1,68 @@
-print("Hello, welcome to the personalized passwordlist creator : ")
-print("please enter the necessary information:")
-print("!!! leave unknown information fields empty")
-print(" ")
-print("""1- info about subject
-2- common number passwords
-3- general password list
-""")
+from itertools import permutations
+print("""
+*************************************
+ Targeted Wordlist Script By qualcom
+        github.com/qualcom
+        fb.com/violentpawn
+*************************************""")
+filepath = input('''\nEnter wordlist path:
+e.g.: C:\\Users\\7\\Desktop\\wordlist.txt\n> ''')
+
+
+def cap(string):
+    string = str(string)
+    return string[0].upper() + string[1:]
+
+final_wordlist = []
 wordlist = []
-
-
-def shuffle():
-    lst = []
-    first_name = input("first name: ")
-    family_name = input("family name: ")
-
-    birthday = input("birthday (e.g.: 13/05/1990): ")
-    birth = birthday.split('/')
-    if birthday != '':
-        birth_year = birth[2]
-        wordlist.append(birth[0] + birth[1] + birth[2])
-        lst.append(birth_year)
-
-    nicknames = input("nicknames(separated with space): ")
-    nicknames = nicknames.split(' ')
-    additional = input('additional info(separated with space): ')
-    additional = additional.split(' ')
-    up = input('uppercase words? y/n : ')
-    print("\n", " ")
-    if first_name != '':
-        lst.append(first_name)
-    if family_name != '':
-        lst.append(family_name)
-    for h in nicknames:
-        lst.append(h)
-    for j in additional:
-        lst.append(j)
-    wordlist.extend(lst)
-
-    if up == 'y':
-        lst2 = []
-        for xo in lst:
-            lst2.append(xo.title())
-    else:
-        lst2 = []
-
-    lst.extend(lst2)
-    lst1 = lst
-    lst3 = lst
-    for w in lst:
-        for y in lst1:
-            a = w.lower()
-            b = y.lower()
-            if a != b:
-                wordlist.append(w+y)
-            for u in lst3:
-                a = w.lower()
-                b = y.lower()
-                c = u.lower()
-                if a != b and a != c and b != c:
-                    wordlist.append(w + y + u)
-
-
-def common_numbers():
-    n = []
-    nu = []
-    for g in range(10):
-        n.append(str(g))
-        nu.append(''.join(n))
-
-    s = []
-    su = []
-    for c in n:
-        s.append(c*2)
-        su.append(''.join(s))
-
-    n.clear()
-    nu1 = []
-    for d in range(1, 10):
-        n.append(str(d))
-        nu1.append(''.join(n))
-    nu2 = []
-    for o in nu1:
-        nu2.append(o+'0')
-
-    s1 = []
-    su1 = []
-    for u in n:
-        s1.append(u*2)
-        su1.append(''.join(s))
-
-    other = ['123123', '12341234', '24682468', '1357913579', 'abc123', '123abc', 'abcd1234']
-    other1 = ['azerty', 'aqwzsx', 'fuckyou', 'azerty123', 'wxcvbn']
-    num = list(filter(lambda z: 4 <= len(z), nu))
-    suf = list(filter(lambda z: 8 <= len(z) <= 10, su))
-    num.extend(list(filter(lambda z: 4 <= len(z), nu2)))
-    num.extend(list(filter(lambda z: 4 <= len(z), nu1)))
-    num.extend(other)
-    suf.extend(list(filter(lambda z: 8 <= len(z) <= 10, su1)))
-    total = []
-    total.extend(num)
-    total.extend(suf)
-    total.extend(list(h[::-1] for h in total))
-    total.extend(other1)
-    wordlist.extend(total)
+name = input('\nFull name: ')
+name = name.lower()
+wordlist.extend(name.split(' '))
 
 while True:
-    choice = input('> ')
-    filename = input('''enter path to save the passwordlist:
-    e.g.: C:\\Users\\XYZ\\ABC\\passwordlist.txt
-    >  ''')
-    wordlist.clear()
-    f = open(filename, 'w+')
-    print(" ")
-    if choice == '1':
-        shuffle()
-        wordlist1 = list(set(wordlist))
-        wordlist1.sort()
-        wordlist1.sort(key=len)
-        for x in wordlist1:
-            print(x, end=' - ')
-            f.write(x + "\n")
-        f.close()
-        print("\n", " ")
-        print("!!! Success ^_^")
-        with open(filename, 'r') as f:
-            print("A password list of", len(f.read().split("\n")), "has been created")
+    birthday_string = input('\nBirthday (dd/mm/yyyy): ')
+    birthday = birthday_string.split('/')
+    if len(birthday_string) == 10:
+        wordlist.append(birthday[2])
+        wordlist.append(''.join(birthday))
+        wordlist.append(birthday[0] + birthday[1] + birthday[2][2:])
+        wordlist.append(str(int(birthday[0])) + str(int(birthday[1])) + birthday[2][2:])
         break
-    elif choice == '2':
-        common_numbers()
-        wordlist1 = list(set(wordlist))
-        wordlist1.sort()
-        wordlist1.sort(key=len)
-        for x in wordlist1:
-            print(x, end=' - ')
-            write = f.write(x + "\n")
-        f.close()
-        print("\n", " ")
-        print("!!! Success ^_^")
-        with open(filename, 'r') as f:
-            print("A password list of", len(f.read().split("\n")), "has been created")
-        break
-    elif choice == '3':
-        shuffle()
-        common_numbers()
-        wordlist1 = list(set(wordlist))
-        wordlist1.sort()
-        wordlist1.sort(key=len)
-        for x in wordlist1:
-            print(x, end=' - ')
-            f.write(x + "\n")
-        f.close()
-        print("\n", " ")
-        print("!!! Success ^_^")
-        with open(filename, 'r') as f:
-            print("A password list of", len(f.read().split("\n")), "has been created")
-        break
+    elif birthday_string and len(birthday_string) != 10:
+        print(birthday)
+        print('!!! Please enter a valid date.')
     else:
-        print('!!! please enter a valid answer ')
+        break
+
+additional = input('\nAdditional information \
+seperated with a single space:\n \
+e.g.: nicknames, family, id number, cellphone number, usernames, etc.)\n> ')
+if additional:
+    wordlist.extend(additional.split(' '))
+
+wordlist_up = []
+for item in wordlist:
+    wordlist_up.append(cap(item))
+wordlist.extend(wordlist_up)
+
+final_wordlist.extend(wordlist)
+final_wordlist.extend(wordlist_up)
+for x in list(permutations(wordlist, 2)):
+    if x[1].lower() != x[0].lower():
+        final_wordlist.append(''.join(x))
+for y in list(permutations(wordlist, 3)):
+    if y[1].lower() != y[0].lower() and \
+       y[2].lower() != y[1].lower() and \
+       y[2].lower() != y[0].lower():
+            final_wordlist.append(''.join(y))
+final_wordlist = list(set(final_wordlist))
+final_wordlist.sort()
+final_wordlist.sort(key=len)
+
+with open(filepath, 'w') as file:  # linux pass the arg newline='\n'
+    for pswrd in final_wordlist[:-1]:
+        file.write(pswrd + '\n')
+    file.write(final_wordlist[-1])
+with open(filepath, 'r') as file_read:
+    print('Mission accomplished ^__^')
+    print("A wordlist of", len(file_read.read().split("\n")), "passwords has been created")
