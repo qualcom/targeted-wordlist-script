@@ -1,4 +1,4 @@
-# targeted wordlist script by qualcom
+# Targeted wordlist script by qualcom
 Create a targeted wordlist using known info about the target.
 
 !!! to start script in deb linux, type in terminal:
