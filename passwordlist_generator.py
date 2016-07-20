@@ -6,7 +6,7 @@ print("""
         fb.com/violentpawn
 *************************************""")
 filepath = input('''\nEnter wordlist path:
-e.g.: C:\\Users\\7\\Desktop\\wordlist.txt\n> ''')
+e.g.: C:\\Users\\XYZ\\Desktop\\wordlist.txt\n> ''')
 
 
 def cap(string):
